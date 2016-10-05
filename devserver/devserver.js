@@ -1,7 +1,6 @@
 /**
  * Custom development server with hot reload functionality using Babel
  *
- * @package: KPC client
  * @author:  pospi <sam@everledger.io>
  * @since:   2016-09-08
  * @flow

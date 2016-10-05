@@ -14,19 +14,9 @@ const postcssModules = require('postcss-modules');
 const partialImport = require('postcss-import');
 const mixins = require('postcss-sassy-mixins');
 const advancedVariables = require('postcss-advanced-variables');
-const customMedia = require('postcss-custom-media');
-const customProperties = require('postcss-custom-properties');
-const mediaMinmax = require('postcss-media-minmax');
 const colorFunctions = require('postcss-sass-color-functions');
 const customFunctions = require('postcss-functions');
-const nesting = require('postcss-nesting');
 const nested = require('postcss-nested');
-const customSelectors = require('postcss-custom-selectors');
-const atroot = require('postcss-atroot');
-const propertyLookup = require('postcss-property-lookup');
-const extend = require('postcss-extend');
-const selectorMatches = require('postcss-selector-matches');
-const selectorNot = require('postcss-selector-not');
 const stripInline = require('postcss-strip-inline-comments');
 const stripMultiline = require('postcss-discard-comments');
 const autoprefixer = require('autoprefixer');
@@ -91,17 +81,7 @@ function getPostCSSPlugins(webpack, format = null) {
     moduleLoaderPlugin,
     mixins(),
     advancedVariables(),
-    customMedia(),
-    customProperties(),
-    mediaMinmax(),
-    nesting(),
     nested(),
-    customSelectors(),
-    atroot(),
-    propertyLookup({ logLevel: 'warn' }),
-    extend(),
-    selectorMatches(),
-    selectorNot(),
     customFunctions({ // MUST go after variable / mixin handling in order to receive final values
       functions: sassFunctions,
     }),

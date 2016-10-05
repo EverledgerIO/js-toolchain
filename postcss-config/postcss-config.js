@@ -30,14 +30,19 @@ const selectorNot = require('postcss-selector-not');
 const stripInline = require('postcss-strip-inline-comments');
 const stripMultiline = require('postcss-discard-comments');
 const autoprefixer = require('autoprefixer');
-
-const sassFunctions = require('../src/stylekit/MUISCSSFunctions');
-
 const postCSSModuleComponents = require('postcss-modules-component-plugin');
 
-// :DUPE: @see ./webpack.config.*.js
-const topDir = path.resolve(__dirname, '../');
-const webBuildDir = path.join(__dirname, 'build');
+const {
+  EXTRA_SASS_FUNCS_FILE,
+  SERVER_STATIC_PATH,
+} = process.env;
+
+const sassFunctions = EXTRA_SASS_FUNCS_FILE
+  ? require(path.resolve(process.cwd(), EXTRA_SASS_FUNCS_FILE))
+  : {};
+
+const topDir = process.cwd();
+const webBuildDir = path.join(topDir, SERVER_STATIC_PATH);
 
 
 // init

@@ -35,15 +35,6 @@ const topDir = process.cwd();
 const webBuildDir = path.join(topDir, SERVER_STATIC_PATH);
 
 
-// init
-postCSSModuleComponents.setGlobalModulesWhitelist([
-  /\/node_modules\//,
-  /src\/views\/buttons\/_buttonMixins\.scss$/,
-  /src\/views\/spinners\/Spinner\.scss$/,
-  /src\/stylekit\/_mixins\.scss$/,
-]);
-
-
 // helpers
 
 function getCssMetaFileName(cssFileName) {

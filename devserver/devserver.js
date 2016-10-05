@@ -25,7 +25,7 @@ const {
   WEBPACK_CONFIG_FILE,
 } = process.env;
 
-const webpackConfig = require(path.resolve(process.cwd, WEBPACK_CONFIG_FILE));
+const webpackConfig = require(path.resolve(process.cwd(), WEBPACK_CONFIG_FILE));
 
 // init server (use express since the webpack middleware works on that)
 

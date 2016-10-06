@@ -12,6 +12,10 @@ require('@pospi/appcore/hooks/node-setGlobalIncludePath')(module);
 
 // Load in dependencies
 const webpack = require('webpack');
+const output = require('webpack-partial/output').default;
+const merge = require('webpack-partial/merge').default;
+const loader = require('webpack-partial/loader').default;
+const plugin = require('webpack-partial/plugin').default;
 const tap = require('webpack-partial/tap').default;
 const { compose } = require('ramda');
 
@@ -123,6 +127,12 @@ module.exports = {
   webpack,
   compose,
   debug,
+
+  tap,
+  loader,
+  plugin,
+  merge,
+  output,
 
   setOutputPath,
   setBundleFilename,

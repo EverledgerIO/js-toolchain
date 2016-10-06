@@ -30,6 +30,7 @@ const setBaseURL = require('./setBaseURL');
 const addEntrypoints = require('./addEntrypoints');
 
 const jsonLoader = require('./jsonLoader');
+const assetLoader = require('./assetLoader');
 
 const useBabel = require('./useBabel');
 const makeBabelConfig = require('../babel/makeBabelConfig');
@@ -57,6 +58,7 @@ const baseDevConfig = compose(
   devSourcemaps,
   devUseHistoryAPI,
   jsonLoader,
+  assetLoader,
   devCSSLoaders,
   useBabel(makeBabelConfig(
     ...baseBabelConfig.concat([
@@ -97,6 +99,7 @@ const baseProdConfig = compose(
   setBundleFilename('[name]-[hash].js'),
   prodSourcemaps,
   jsonLoader,
+  assetLoader,
   prodCSSLoaders,
   useBabel(makeBabelConfig(
     ...baseBabelConfig.concat([
@@ -127,6 +130,7 @@ module.exports = {
   addEntrypoints,
 
   jsonLoader,
+  assetLoader,
 
   useBabel,
   makeBabelConfig,

@@ -20,7 +20,7 @@ const debug = tap((config) => {
   console.log('WEBPACK CONFIG:');
   console.log(require('util').inspect(config, { depth: null, colors: true }));
   console.log('');
-  // process.exit();
+  process.exit();
 });
 
 // Load in low-level configuration components

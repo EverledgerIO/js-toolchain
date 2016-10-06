@@ -28,7 +28,7 @@
     "postcss-functions": "^2.1.0",
     "postcss-import": "^8.1.2",
     "postcss-modules": "^0.5.2",
-    "postcss-modules-component-plugin": "0.0.1",
+    "postcss-modules-component-plugin": "0.0.2",
     "postcss-nested": "^1.0.0",
     "postcss-sass-color-functions": "^1.1.0",
     "postcss-sassy-mixins": "^2.0.0",

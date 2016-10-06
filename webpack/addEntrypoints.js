@@ -9,11 +9,8 @@
  * @flow
  */
 
-const { curry, concat, reverse, mergeWith } = require('ramda');
+const { curry } = require('ramda');
 
-const rConcat = (...args) => concat(...reverse(args));
+const rConcatArrayKey = require('../helpers/rConcatArrayKey');
 
-module.exports = curry(entryFile => mergeWith(
-  rConcat,
-  { entry: Array.isArray(entryFile) ? entryFile : [entryFile] }
-));
+module.exports = curry(entryFile => rConcatArrayKey('entry', entryFile));

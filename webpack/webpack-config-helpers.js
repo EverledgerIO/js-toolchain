@@ -27,6 +27,8 @@ const debug = tap((config) => {
 const setOutputPath = require('./setOutputPath');
 const addEntrypoints = require('./addEntrypoints');
 
+const jsonLoader = require('./jsonLoader');
+
 const useBabel = require('./useBabel');
 const makeBabelConfig = require('../babel/makeBabelConfig');
 const setBabelFeatures = require('../babel/setBabelFeatures');
@@ -51,6 +53,7 @@ const baseBabelConfig = [
 const baseDevConfig = compose(
   devSourcemaps,
   devUseHistoryAPI,
+  jsonLoader,
   devCSSLoaders,
   useBabel(makeBabelConfig(
     ...baseBabelConfig.concat([
@@ -89,6 +92,7 @@ const baseDevConfig = compose(
 
 const baseProdConfig = compose(
   prodSourcemaps,
+  jsonLoader,
   prodCSSLoaders,
   useBabel(makeBabelConfig(
     ...baseBabelConfig.concat([
@@ -115,6 +119,8 @@ module.exports = {
 
   setOutputPath,
   addEntrypoints,
+
+  jsonLoader,
 
   useBabel,
   makeBabelConfig,

@@ -35,8 +35,10 @@ const addBabelPlugin = require('../babel/addBabelPlugin');
 
 const devSourcemaps = require('./devSourcemaps');
 const devUseHistoryAPI = require('./devUseHistoryAPI');
+const devCSSLoaders = require('./devCSSLoaders');
 
 const prodSourcemaps = require('./prodSourcemaps');
+const prodCSSLoaders = require('./prodCSSLoaders');
 
 // Compose them into most common higher-level configurations
 const baseBabelConfig = [
@@ -49,6 +51,7 @@ const baseBabelConfig = [
 const baseDevConfig = compose(
   devSourcemaps,
   devUseHistoryAPI,
+  devCSSLoaders,
   useBabel(makeBabelConfig(
     ...baseBabelConfig.concat([
       // enable caching while developing to speed up compilation
@@ -86,6 +89,7 @@ const baseDevConfig = compose(
 
 const baseProdConfig = compose(
   prodSourcemaps,
+  prodCSSLoaders,
   useBabel(makeBabelConfig(
     ...baseBabelConfig.concat([
       // disable caching to ensure we always have the latest code being compiled, even in weird conditions
@@ -120,8 +124,10 @@ module.exports = {
 
   devSourcemaps,
   devUseHistoryAPI,
+  devCSSLoaders,
 
   prodSourcemaps,
+  prodCSSLoaders,
 
   baseDevConfig,
   baseProdConfig,

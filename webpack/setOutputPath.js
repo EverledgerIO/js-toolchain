@@ -10,10 +10,10 @@
  */
 
 const { curry, compose } = require('ramda');
-const output = require('webpack-partial/output');
-const merge = require('webpack-partial/merge');
+const output = require('webpack-partial/output').default;
+const merge = require('webpack-partial/merge').default;
 
 module.exports = curry(folderPath => compose(
   output({ path: folderPath }),
-  merge({ devServer: { contentBase: folderPath } }),
+  merge({ devServer: { contentBase: folderPath } })
 ));

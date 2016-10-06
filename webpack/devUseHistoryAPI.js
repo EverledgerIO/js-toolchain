@@ -7,6 +7,6 @@
  * @flow
  */
 
-const merge = require('webpack-partial/merge');
+const merge = require('webpack-partial/merge').default;
 
 module.exports = merge({ devServer: { historyApiFallback: true } });

@@ -32,6 +32,7 @@ const setOutputPath = require('./setOutputPath');
 const setBundleFilename = require('./setBundleFilename');
 const setBaseURL = require('./setBaseURL');
 const addEntrypoints = require('./addEntrypoints');
+const compileIndexFile = require('./compileIndexFile');
 
 const jsonLoader = require('./jsonLoader');
 const assetLoader = require('./assetLoader');
@@ -95,7 +96,7 @@ const baseDevConfig = compose(
       }]),
     ])
   )),
-  // enable HMR functionality in the bulid
+  // enable HMR functionality in the build
   addEntrypoints(['react-hot-loader/patch', 'webpack-hot-middleware/client'])
 );
 
@@ -138,6 +139,7 @@ module.exports = {
   setBundleFilename,
   setBaseURL,
   addEntrypoints,
+  compileIndexFile,
 
   jsonLoader,
   assetLoader,

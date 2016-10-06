@@ -5,6 +5,8 @@ Various modules to assist with developing frontend applications.
 <!-- MarkdownTOC -->
 
 - [Modules list](#modules-list)
+	- [Internal use](#internal-use)
+- [Usage & examples](#usage--examples)
 
 <!-- /MarkdownTOC -->
 
@@ -17,3 +19,13 @@ This repository contains only a singular exposed module, since various pieces of
 	- `EXTERNAL_PORT`- the port it should listen on.
 	- `WEBPACK_CONFIG_FILE`- path to configuration file to load for Webpack, relative to your project folder.
 - `postcss-config`: Standard configuration for CSS compilation used in projects. This config ideally *does not* change from project to project- we will add support for other CSS preprocessors as needed such that our build system can basically digest anything we throw at it.
+- `webpack`: Contains composable helper functions for generating webpack configuration objects. See the main `webpack-config-helpers.js` file for the available imports.
+- `babel`: Contains composable helper functions for generating Babel configuration objects. Not usually used directly (though this may be a thing in future)- imported by the `webpack` helpers in order to build the `babel-loader`'s `query` object.
+
+### Internal use
+
+- The `helpers` folder contains some higher-order functional helpers used in various parts of the framework. These probably shouldn't be used outside of this module.
+
+## Usage & examples
+
+For more examples and expected usage of these helpers, see the `boilerplate-frontend` repository.

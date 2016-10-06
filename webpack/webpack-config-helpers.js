@@ -46,9 +46,12 @@ const addBabelPlugin = require('../babel/addBabelPlugin');
 const devSourcemaps = require('./devSourcemaps');
 const devUseHistoryAPI = require('./devUseHistoryAPI');
 const devCSSLoaders = require('./devCSSLoaders');
+const devPlugins = require('./devPlugins');
 
 const prodSourcemaps = require('./prodSourcemaps');
 const prodCSSLoaders = require('./prodCSSLoaders');
+const compileCSSSeparately = require('./compileCSSSeparately');
+const optimiserPlugins = require('./optimiserPlugins');
 
 // Compose them into most common higher-level configurations
 const baseBabelConfig = [
@@ -65,6 +68,7 @@ const baseDevConfig = compose(
   jsonLoader,
   assetLoader,
   devCSSLoaders,
+  devPlugins,
   useBabel(makeBabelConfig(
     ...baseBabelConfig.concat([
       // enable caching while developing to speed up compilation
@@ -102,10 +106,12 @@ const baseDevConfig = compose(
 
 const baseProdConfig = compose(
   setBundleFilename('[name]-[hash].js'),
+  compileCSSSeparately('[name]-[hash].css'),    // required for `prodCSSLoaders` to work as expected
   prodSourcemaps,
   jsonLoader,
   assetLoader,
   prodCSSLoaders,
+  optimiserPlugins,
   useBabel(makeBabelConfig(
     ...baseBabelConfig.concat([
       // disable caching to ensure we always have the latest code being compiled, even in weird conditions
@@ -153,9 +159,12 @@ module.exports = {
   devSourcemaps,
   devUseHistoryAPI,
   devCSSLoaders,
+  devPlugins,
 
   prodSourcemaps,
   prodCSSLoaders,
+  compileCSSSeparately,
+  optimiserPlugins,
 
   baseDevConfig,
   baseProdConfig,

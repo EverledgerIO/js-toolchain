@@ -7,6 +7,7 @@ Various modules to assist with developing frontend applications.
 - [Modules list](#modules-list)
 	- [Internal use](#internal-use)
 - [Usage & examples](#usage--examples)
+- [To do](#to-do)
 
 <!-- /MarkdownTOC -->
 
@@ -24,8 +25,15 @@ This repository contains only a singular exposed module, since various pieces of
 
 ### Internal use
 
-- The `helpers` folder contains some higher-order functional helpers used in various parts of the framework. These probably shouldn't be used outside of this module.
+- The `helpers` folder contains some higher-order functional helpers used in various parts of the framework. These shouldn't be used outside of this module.
 
 ## Usage & examples
 
 For more examples and expected usage of these helpers, see the `boilerplate-frontend` repository.
+
+
+## To do
+
+- LESS compilation, native SASS compilation & W3C CSS compilation modes via PostCSS (if needed)
+- Break up CSS loader behaviours into smaller composable elements
+- Remove environment variables from `postcss-config.js` and `devserver.js` in favour of conversion to composable functions

@@ -25,6 +25,8 @@ const debug = tap((config) => {
 
 // Load in low-level configuration components
 const setOutputPath = require('./setOutputPath');
+const setBundleFilename = require('./setBundleFilename');
+const setBaseURL = require('./setBaseURL');
 const addEntrypoints = require('./addEntrypoints');
 
 const jsonLoader = require('./jsonLoader');
@@ -51,6 +53,7 @@ const baseBabelConfig = [
 ];
 
 const baseDevConfig = compose(
+  setBundleFilename('bundle.js'),
   devSourcemaps,
   devUseHistoryAPI,
   jsonLoader,
@@ -91,6 +94,7 @@ const baseDevConfig = compose(
 );
 
 const baseProdConfig = compose(
+  setBundleFilename('[name]-[hash].js'),
   prodSourcemaps,
   jsonLoader,
   prodCSSLoaders,
@@ -118,6 +122,8 @@ module.exports = {
   debug,
 
   setOutputPath,
+  setBundleFilename,
+  setBaseURL,
   addEntrypoints,
 
   jsonLoader,

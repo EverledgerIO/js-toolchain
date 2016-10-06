@@ -15,6 +15,8 @@ const addEntrypoints = require('./addEntrypoints');
 module.exports = babelSettings => compose(
   addEntrypoints('babel-polyfill'),
   loader({
+    test: /\.jsx?$/,
+    exclude: [/\/node_modules\//],
     loader: 'babel',
     query: mergeWith(concat, { presets: [], plugins: [] }, babelSettings),
   })

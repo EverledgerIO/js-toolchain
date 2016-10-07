@@ -84,8 +84,18 @@ function getPostCSSPlugins(webpack, format = null) {
   ];
 }
 
+function makePostCSSOptions(classnameFormat) {
+  return function(webpack) {
+    return {
+      plugins: getPostCSSPlugins(webpack, classnameFormat),
+      syntax: syntax,
+    };
+  };
+}
+
 
 module.exports = {
+  makePostCSSOptions,
   getPostCSSPlugins,
   syntax,
 };

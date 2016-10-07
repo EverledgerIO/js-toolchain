@@ -8,16 +8,19 @@
  */
 
 const { compose } = require('ramda');
+const webpack = require('webpack');
 const loader = require('webpack-partial/loader').default;
-const merge = require('webpack-partial/merge').default;
+const plugin = require('webpack-partial/plugin').default;
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const postCSSModuleComponents = require('postcss-modules-component-plugin');
 
-const { syntax, getPostCSSPlugins } = require('../postcss-config');
+const { makePostCSSOptions } = require('../postcss-config');
+
+const matchRegex = /\.(css|scss)$/;
 
 module.exports = compose(
   loader({
-    test: /\.(css|scss)$/,
+    test: matchRegex,
     exclude: [/\/node_modules\//],
     loaders: [
       'style-loader',
@@ -33,12 +36,8 @@ module.exports = compose(
       }),
     ],
   }),
-  merge({
-    postcss: function(webpack) {
-      return {
-        plugins: getPostCSSPlugins(webpack, '[emoji][hash:base64:5]'),
-        syntax: syntax,
-      };
-    },
-  })
+  plugin(new webpack.LoaderOptionsPlugin({
+    test: matchRegex,
+    options: { postcss: makePostCSSOptions('[emoji][hash:base64:5]') },
+  }))
 );

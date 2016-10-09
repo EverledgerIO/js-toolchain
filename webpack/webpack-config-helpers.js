@@ -31,6 +31,7 @@ const debug = tap((config) => {
 const setOutputPath = require('./setOutputPath');
 const setBundleFilename = require('./setBundleFilename');
 const setBaseURL = require('./setBaseURL');
+const setStandardResolveConfig = require('./setStandardResolveConfig');
 const addEntrypoints = require('./addEntrypoints');
 const compileIndexFile = require('./compileIndexFile');
 
@@ -62,6 +63,7 @@ const baseBabelConfig = [
 ];
 
 const baseDevConfig = compose(
+  setStandardResolveConfig,
   setBundleFilename('bundle.js'),
   devSourcemaps,
   devUseHistoryAPI,
@@ -105,6 +107,7 @@ const baseDevConfig = compose(
 );
 
 const baseProdConfig = compose(
+  setStandardResolveConfig,
   setBundleFilename('[name]-[hash].js'),
   compileCSSSeparately('[name]-[hash].css'),    // required for `prodCSSLoaders` to work as expected
   prodSourcemaps,
@@ -146,6 +149,7 @@ module.exports = {
   setOutputPath,
   setBundleFilename,
   setBaseURL,
+  setStandardResolveConfig,
   addEntrypoints,
   compileIndexFile,
 

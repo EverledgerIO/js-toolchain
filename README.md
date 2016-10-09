@@ -34,6 +34,7 @@ For more examples and expected usage of these helpers, see the `boilerplate-fron
 
 ## To do
 
+- Update `postcss-import` to latest version. @see https://github.com/webpack/webpack/issues/2411#issuecomment-247132992
 - LESS compilation, native SASS compilation & W3C CSS compilation modes via PostCSS (if needed)
 - Break up CSS loader behaviours into smaller composable elements
 - Remove environment variables from `postcss-config.js` and `devserver.js` in favour of conversion to composable functions

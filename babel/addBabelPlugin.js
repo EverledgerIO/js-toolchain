@@ -11,4 +11,4 @@ const { curry } = require('ramda');
 
 const concatArrayKey = require('../helpers/concatArrayKey');
 
-module.exports = curry(plugins => concatArrayKey('plugins', plugins));
+module.exports = curry(plugins => concatArrayKey('plugins', [plugins]));

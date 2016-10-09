@@ -38,3 +38,4 @@ For more examples and expected usage of these helpers, see the `boilerplate-fron
 - LESS compilation, native SASS compilation & W3C CSS compilation modes via PostCSS (if needed)
 - Break up CSS loader behaviours into smaller composable elements
 - Remove environment variables from `postcss-config.js` and `devserver.js` in favour of conversion to composable functions
+- Attempt keeping all Webpack loader modules within this repo and passing them to the parent project using `require.resolve()`

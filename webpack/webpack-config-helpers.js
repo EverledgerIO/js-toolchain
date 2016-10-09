@@ -101,7 +101,7 @@ const baseDevConfig = compose(
     ])
   )),
   // enable HMR functionality in the build
-  addEntrypoints(['react-hot-loader/patch', 'webpack-hot-middleware/client'])
+  addEntrypoints(['react-hot-loader/patch', require.resolve('webpack-hot-middleware/client')])
 );
 
 const baseProdConfig = compose(

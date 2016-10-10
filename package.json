@@ -9,11 +9,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/everledger/everledger-js-toolchain.git"
+    "url": "git+ssh://git@github.com:EverledgerIO/js-toolchain.git"
   },
   "author": "Everledger.io",
   "license": "UNLICENSED",
-  "homepage": "https://bitbucket.org/everledger/everledger-js-toolchain#readme",
+  "homepage": "https://github.com/EverledgerIO/js-toolchain#readme",
   "dependencies": {
     "@pospi/appcore": "pospi/jsappcore#master",
     "autoprefixer": "^6.5.0",

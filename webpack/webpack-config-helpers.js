@@ -7,9 +7,6 @@
  * @flow
  */
 
-// Helper to setup a module system hook so that `npm link`ed modules can resolve their dependencies correctly
-const handleIncludePaths = require('@pospi/appcore/hooks/node-setGlobalIncludePath');
-
 // Load in dependencies
 const webpack = require('webpack');
 const output = require('webpack-partial/output').default;
@@ -134,8 +131,6 @@ const baseProdConfig = compose(
 
 // Export for use in dependant projects
 module.exports = {
-  handleIncludePaths,
-
   webpack,
   compose,
   debug,

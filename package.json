@@ -30,7 +30,7 @@
     "postcss-nested": "^1.0.0",
     "postcss-sass-color-functions": "^1.1.0",
     "postcss-sassy-mixins": "^2.0.0",
-    "postcss-scss": "^0.3.1",
+    "postcss-scss": "^0.1.9",
     "postcss-strip-inline-comments": "^0.1.5",
     "ramda": "^0.22.1",
     "serve-static": "^1.11.1",

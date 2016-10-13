@@ -12,7 +12,7 @@
     "url": "git+ssh://git@github.com:EverledgerIO/js-toolchain.git"
   },
   "author": "Everledger.io",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "homepage": "https://github.com/EverledgerIO/js-toolchain#readme",
   "dependencies": {
     "autoprefixer": "^6.5.0",

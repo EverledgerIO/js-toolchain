@@ -20,7 +20,8 @@ This repository contains only a singular exposed module, since various pieces of
 	- `EXTERNAL_PORT`- the port it should listen on.
 	- `WEBPACK_CONFIG_FILE`- path to configuration file to load for Webpack, relative to your project folder.
 - `postcss-config`: Standard configuration for CSS compilation used in projects. This config ideally *does not* change from project to project- we will add support for other CSS preprocessors as needed such that our build system can basically digest anything we throw at it.
-- `webpack`: Contains composable helper functions for generating webpack configuration objects. See the main `webpack-config-helpers.js` file for the available imports.
+- `webpack`: Contains composable helper functions for generating Webpack configuration objects. See the main `webpack-config-helpers.js` file for the available imports.
+- `rollup`: Contains some curried helpers for compiling ES6 in serverside apps.
 - `babel`: Contains composable helper functions for generating Babel configuration objects. Not usually used directly (though this may be a thing in future)- imported by the `webpack` helpers in order to build the `babel-loader`'s `query` object.
 
 ### Internal use
@@ -34,8 +35,13 @@ For more examples and expected usage of these helpers, see the `boilerplate-fron
 
 ## To do
 
-- Update `postcss-import` to latest version. @see https://github.com/webpack/webpack/issues/2411#issuecomment-247132992
-- LESS compilation, native SASS compilation & W3C CSS compilation modes via PostCSS (if needed)
-- Break up CSS loader behaviours into smaller composable elements
-- Remove environment variables from `postcss-config.js` and `devserver.js` in favour of conversion to composable functions
-- Attempt keeping all Webpack loader modules within this repo and passing them to the parent project using `require.resolve()`
+- **CSS Compilation**
+	- Update `postcss-import` to latest version. @see https://github.com/webpack/webpack/issues/2411#issuecomment-247132992
+	- LESS compilation, native SASS compilation & W3C CSS compilation modes via PostCSS (if needed)
+- **Frontend build system**
+	- Break up CSS loader behaviours into smaller composable elements
+	- Remove environment variables from `postcss-config.js` and `devserver.js` in favour of conversion to composable functions
+	- Attempt keeping all Webpack loader modules within this repo and passing them to the parent project using `require.resolve()`
+- **Backend build system**
+	- Add development script to reboot after a code change
+	- Ensure sourcemapping works correctly with debugging

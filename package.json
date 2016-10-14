@@ -1,7 +1,7 @@
 {
   "name": "@everledger/js-toolchain",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Common tooling for JavaScript compilation workflows used throughout projects",
   "main": "index.js",
   "scripts": {

@@ -39,16 +39,6 @@ function runRollup(pkg, destDir, entrypoint) {
     })));
   }
 
-  // Copy package.json and LICENSE.txt
-  promise = promise.then(() => {
-    // delete pkg.private;
-    delete pkg.devDependencies;
-    delete pkg.scripts;
-    delete pkg.eslintConfig;
-    delete pkg.babel;
-    fs.writeFileSync(path.resolve(destDir, 'package.json'), JSON.stringify(pkg, null, '  '), 'utf-8');
-  });
-
   return promise.catch(err => console.error(err, err.stack)); // eslint-disable-line no-console
 }
 

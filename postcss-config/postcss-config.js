@@ -19,6 +19,7 @@ const customFunctions = require('postcss-functions');
 const nested = require('postcss-nested');
 const stripInline = require('postcss-strip-inline-comments');
 const stripMultiline = require('postcss-discard-comments');
+const autoMath = require('postcss-automath');
 const autoprefixer = require('autoprefixer');
 const postCSSModuleComponents = require('postcss-modules-component-plugin');
 
@@ -77,6 +78,7 @@ function getPostCSSPlugins(webpack, format = null) {
       functions: sassFunctions,
     }),
     colorFunctions(), // MUST go after `customFunctions` as the output from them is often used as input to color fns
+    autoMath(),
     stripInline(),
     stripMultiline(),
     // Handle outdated browser compatibility

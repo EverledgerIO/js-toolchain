@@ -36,10 +36,9 @@ const jsonLoader = require('./jsonLoader');
 const assetLoader = require('./assetLoader');
 
 const useBabel = require('./useBabel');
-const makeBabelConfig = require('../babel/makeBabelConfig');
-const setBabelFeatures = require('../babel/setBabelFeatures');
-const addBabelPresets = require('../babel/addBabelPresets');
-const addBabelPlugin = require('../babel/addBabelPlugin');
+const setBabelFeatures = require('./babelFeatures');
+const addBabelPresets = require('./babelPresets');
+const addBabelPlugin = require('./babelPlugin');
 
 const devSourcemaps = require('./devSourcemaps');
 const devUseHistoryAPI = require('./devUseHistoryAPI');
@@ -68,37 +67,35 @@ const baseDevConfig = compose(
   assetLoader,
   devCSSLoaders,
   devPlugins,
-  useBabel(makeBabelConfig(
-    ...baseBabelConfig.concat([
-      // enable caching while developing to speed up compilation
-      setBabelFeatures({
-        cacheDirectory: true,
-      }),
-      // auto-apply HMR functionality to React components
-      addBabelPlugin("react-hot-loader/babel"),
-      addBabelPlugin(["react-transform", {
-        "transforms": [{
-          "transform": "react-transform-hmr",
-          "imports": ["react"], // :NOTE: if you use React Native, pass "react-native" instead
-          "locals": ["module"], // :IMPORTANT:
-        }, {
-      // assist with React render() debugging
-          "transform": "react-transform-catch-errors",
-          "imports": [
-            "react",  // :NOTE: if you use React Native, pass "react-native" instead
-            "redbox-react", // React component to render error
-          ],
-        }],
-      }]),
-      // ES7 async / await runtime with extra stack trace info for debugging
-      addBabelPlugin(["fast-async", {
-        "env": {
-          "asyncStackTrace": true,
-        },
-        "runtimePattern": "directive",  // requires "use runtime-nodent" at start of entrypoint file
-      }]),
-    ])
-  )),
+  useBabel(),
+  ...baseBabelConfig,
+  // enable caching while developing to speed up compilation
+  setBabelFeatures({
+    cacheDirectory: true,
+  }),
+  // auto-apply HMR functionality to React components
+  addBabelPlugin("react-hot-loader/babel"),
+  addBabelPlugin(["react-transform", {
+    "transforms": [{
+      "transform": "react-transform-hmr",
+      "imports": ["react"], // :NOTE: if you use React Native, pass "react-native" instead
+      "locals": ["module"], // :IMPORTANT:
+    }, {
+  // assist with React render() debugging
+      "transform": "react-transform-catch-errors",
+      "imports": [
+        "react",  // :NOTE: if you use React Native, pass "react-native" instead
+        "redbox-react", // React component to render error
+      ],
+    }],
+  }]),
+  // ES7 async / await runtime with extra stack trace info for debugging
+  addBabelPlugin(["fast-async", {
+    "env": {
+      "asyncStackTrace": true,
+    },
+    "runtimePattern": "directive",  // requires "use runtime-nodent" at start of entrypoint file
+  }]),
   // enable HMR functionality in the build
   addEntrypoints(['react-hot-loader/patch', require.resolve('webpack-hot-middleware/client')])
 );
@@ -112,21 +109,19 @@ const baseProdConfig = compose(
   assetLoader,
   prodCSSLoaders,
   optimiserPlugins,
-  useBabel(makeBabelConfig(
-    ...baseBabelConfig.concat([
-      // disable caching to ensure we always have the latest code being compiled, even in weird conditions
-      setBabelFeatures({
-        cacheDirectory: false,
-      }),
-      // ES7 async / await runtime, fastest mode (no detailed stack traces)
-      addBabelPlugin(["fast-async", {
-        "env": {
-          "asyncStackTrace": true,
-        },
-        "runtimePattern": "directive",  // requires "use runtime-nodent" at start of entrypoint file
-      }]),
-    ])
-  ))
+  useBabel(),
+  ...baseBabelConfig,
+  // disable caching to ensure we always have the latest code being compiled, even in weird conditions
+  setBabelFeatures({
+    cacheDirectory: false,
+  }),
+  // ES7 async / await runtime, fastest mode (no detailed stack traces)
+  addBabelPlugin(["fast-async", {
+    "env": {
+      "asyncStackTrace": true,
+    },
+    "runtimePattern": "directive",  // requires "use runtime-nodent" at start of entrypoint file
+  }])
 );
 
 // Export for use in dependant projects
@@ -152,7 +147,6 @@ module.exports = {
   assetLoader,
 
   useBabel,
-  makeBabelConfig,
   setBabelFeatures,
   addBabelPresets,
   addBabelPlugin,

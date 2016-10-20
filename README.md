@@ -32,6 +32,8 @@ This repository contains only a singular exposed module, since various pieces of
 
 For more examples and expected usage of these helpers, see the `boilerplate-frontend` repository.
 
+The `ramda-repl` command is highly recommended when developing against this module: `npm i -g ramda-repl`
+
 
 ## To do
 

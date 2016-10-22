@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:EverledgerIO/js-toolchain.git"
+    "url": "git+ssh://git@github.com/EverledgerIO/js-toolchain.git"
   },
   "author": "Everledger.io",
   "license": "MIT",

@@ -21,6 +21,7 @@
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "html-webpack-plugin": "^2.22.0",
     "postcss-advanced-variables": "^1.2.2",
+    "postcss-automath": "^1.0.0",
     "postcss-discard-comments": "^2.0.4",
     "postcss-functions": "^2.1.0",
     "postcss-import": "8.1.0",

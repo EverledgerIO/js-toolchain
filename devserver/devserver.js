@@ -15,8 +15,8 @@ const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const historyApiFallback = require("connect-history-api-fallback");
 
-const topPath = path.join(__dirname, '../');
-const staticPath = path.join(__dirname, './build/');
+const topPath = process.cwd();
+const staticPath = path.resolve(process.cwd(), './web/build/');
 
 // read config
 const {

@@ -8,38 +8,34 @@
  */
 
 const { curry } = require('ramda');
-const fs = require('fs');
 const path = require('path');
 const del = require('del');
-const rollup = require('rollup');
 const babel = require('rollup-plugin-babel');
 
-function runRollup(pkg, destDir, entrypoint) {
-  let promise = Promise.resolve();
-
+function makeRollupConfig(pkg, destDir, entrypoint) {
   const extension = path.extname(entrypoint);
   const filename = path.basename(entrypoint, extension);
 
-  // Compile source code into a distributable format with Babel
-  for (const format of ['es6', 'cjs']) {
-    promise = promise.then(() => rollup.rollup({
-      entry: entrypoint,
-      external: Object.keys(pkg.dependencies),
-      plugins: [babel(Object.assign(pkg.babel, {
-        babelrc: false,
-        exclude: 'node_modules/**',
-        runtimeHelpers: true,
-        presets: pkg.babel.presets.map(x => (x === 'es2015' ? 'es2015-rollup' : x)),
-      }))],
-    }).then(bundle => bundle.write({
-      dest: path.resolve(destDir, format === 'cjs' ? `${filename}.js` : `${filename}.${format}.js`),
-      format,
-      sourceMap: true,
-      moduleName: format === 'umd' ? pkg.name : undefined,
-    })));
-  }
-
-  return promise.catch(err => console.error(err, err.stack)); // eslint-disable-line no-console
+  return {
+    entry: entrypoint,
+    external: Object.keys(pkg.dependencies),
+    plugins: [babel(Object.assign(pkg.babel, {
+      babelrc: false,
+      exclude: 'node_modules/**',
+      runtimeHelpers: true,
+      presets: pkg.babel.presets.map(x => (x === 'es2015' ? 'es2015-rollup' : x)),
+    }))],
+    targets: [
+      {
+        format: 'es',
+        dest: path.resolve(destDir, `${filename}.es6.js`),
+      },
+      {
+        format: 'cjs',
+        dest: path.resolve(destDir, `${filename}.js`),
+      },
+    ],
+  };
 }
 
 function cleanOutputDirectory(destDir) {
@@ -47,6 +43,6 @@ function cleanOutputDirectory(destDir) {
 }
 
 module.exports = {
-  compileES6Module: curry(runRollup),
+  makeRollupConfig: curry(makeRollupConfig),
   cleanOutputDirectory,
 };

@@ -1,6 +1,6 @@
 {
   "name": "@everledger/js-toolchain",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Common tooling for JavaScript compilation workflows used throughout projects",
   "main": "index.js",
   "scripts": {

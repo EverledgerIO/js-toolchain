@@ -28,10 +28,12 @@ function makeRollupConfig(pkg, destDir, entrypoint) {
     targets: [
       {
         format: 'es',
+        sourceMap: true,
         dest: path.resolve(destDir, `${filename}.es6.js`),
       },
       {
         format: 'cjs',
+        sourceMap: true,
         dest: path.resolve(destDir, `${filename}.js`),
       },
     ],

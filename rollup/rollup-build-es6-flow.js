@@ -8,6 +8,7 @@
  */
 
 const { curry } = require('ramda');
+const os = require('os');
 const path = require('path');
 const del = require('del');
 const async = require('rollup-plugin-async');
@@ -21,13 +22,16 @@ function makeRollupConfig(pkg, destDir, entrypoint) {
     entry: entrypoint,
     external: Object.keys(pkg.dependencies),
     plugins: [
-      async(),
       babel(Object.assign(pkg.babel, {
         babelrc: false,
-        exclude: 'node_modules/**',
+        ignore: [
+          'node_modules/**',
+          path.join(os.tmpdir(), '**'),
+        ],
         runtimeHelpers: true,
         presets: pkg.babel.presets.map(x => (x === 'es2015' ? 'es2015-rollup' : x)),
       })),
+      async(),
     ],
     targets: [
       {

@@ -13,6 +13,8 @@ const path = require('path');
 const del = require('del');
 const async = require('rollup-plugin-async');
 const babel = require('rollup-plugin-babel');
+const commonjs = require('rollup-plugin-commonjs');
+const nodeResolve = require('rollup-plugin-node-resolve');
 
 function makeRollupConfig(pkg, destDir, entrypoint) {
   const extension = path.extname(entrypoint);
@@ -22,16 +24,21 @@ function makeRollupConfig(pkg, destDir, entrypoint) {
     entry: entrypoint,
     external: Object.keys(pkg.dependencies),
     plugins: [
-      babel(Object.assign(pkg.babel, {
+      async(),
+      babel(Object.assign({}, pkg.babel, {
         babelrc: false,
-        ignore: [
+        exclude: [
           'node_modules/**',
           path.join(os.tmpdir(), '**'),
         ],
-        runtimeHelpers: true,
-        presets: pkg.babel.presets.map(x => (x === 'es2015' ? 'es2015-rollup' : x)),
       })),
-      async(),
+      nodeResolve({
+        jsnext: true,
+        main: true,
+      }),
+      commonjs({
+        exclude: ['node_modules/**'],
+      }),
     ],
     targets: [
       {

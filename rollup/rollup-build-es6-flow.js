@@ -11,7 +11,6 @@ const { curry } = require('ramda');
 const os = require('os');
 const path = require('path');
 const del = require('del');
-const async = require('rollup-plugin-async');
 const babel = require('rollup-plugin-babel');
 const commonjs = require('rollup-plugin-commonjs');
 const nodeResolve = require('rollup-plugin-node-resolve');
@@ -23,23 +22,12 @@ function makeRollupConfig(pkg, destDir, entrypoint) {
   return {
     entry: entrypoint,
     external: Object.keys(pkg.dependencies),
-    plugins: [
-      async(),
-      babel(Object.assign({}, pkg.babel, {
-        babelrc: false,
-        exclude: [
-          'node_modules/**',
-          path.join(os.tmpdir(), '**'),
-        ],
-      })),
-      nodeResolve({
-        jsnext: true,
-        main: true,
-      }),
-      commonjs({
-        exclude: ['node_modules/**'],
-      }),
-    ],
+    plugins: [babel(Object.assign(pkg.babel, {
+      babelrc: false,
+      exclude: 'node_modules/**',
+      runtimeHelpers: true,
+      presets: pkg.babel.presets.map(x => (x === 'es2015' ? 'es2015-rollup' : x)),
+    }))],
     targets: [
       {
         format: 'es',

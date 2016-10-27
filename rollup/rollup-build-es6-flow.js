@@ -8,12 +8,9 @@
  */
 
 const { curry } = require('ramda');
-const os = require('os');
 const path = require('path');
 const del = require('del');
 const babel = require('rollup-plugin-babel');
-const commonjs = require('rollup-plugin-commonjs');
-const nodeResolve = require('rollup-plugin-node-resolve');
 
 function makeRollupConfig(pkg, destDir, entrypoint) {
   const extension = path.extname(entrypoint);

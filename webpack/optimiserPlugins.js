@@ -12,11 +12,15 @@ const webpack = require('webpack');
 const plugin = require('webpack-partial/plugin').default;
 
 module.exports = compose(
-  plugin(new webpack.optimize.OccurrenceOrderPlugin()),
-  plugin(new webpack.optimize.UglifyJsPlugin({
-    comments: false,
-    compress: {
-      warnings: false,
-    },
-  }))
+  plugin(new webpack.optimize.OccurrenceOrderPlugin())
+
+  // :TODO: make this work with babel
+  // @see https://github.com/webpack/webpack/issues/1659
+  // @see https://github.com/boopathi/babili-webpack-plugin
+  // plugin(new webpack.optimize.UglifyJsPlugin({
+  //   comments: false,
+  //   compress: {
+  //     warnings: false,
+  //   },
+  // }))
 );

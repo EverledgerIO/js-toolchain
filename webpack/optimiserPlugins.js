@@ -13,7 +13,6 @@ const plugin = require('webpack-partial/plugin').default;
 
 module.exports = compose(
   plugin(new webpack.optimize.OccurrenceOrderPlugin()),
-  plugin(new webpack.optimize.DedupePlugin()),
   plugin(new webpack.optimize.UglifyJsPlugin({
     comments: false,
     compress: {

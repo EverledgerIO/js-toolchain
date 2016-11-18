@@ -25,12 +25,12 @@ const {
 const babelBaseConfig = defaultTo({
   test: /\.jsx?$/,
   exclude: [/\/node_modules\//],
-  loader: 'babel',
+  loader: 'babel-loader',
   query: { presets: [], plugins: [] },
 });
 
 // filter helper to find the babel loader in Webpack's `loaders` array
-const isBabelLoader = propEq('loader', 'babel');
+const isBabelLoader = propEq('loader', 'babel-loader');
 
 // toplevel lens to retrieve loaders or provide an empty array
 const loadersLens = lens(

@@ -38,6 +38,6 @@ module.exports = compose(
   }),
   plugin(new webpack.LoaderOptionsPlugin({
     test: matchRegex,
-    options: { postcss: makePostCSSOptions('[emoji][hash:base64:5]') },
+    options: { postcss: makePostCSSOptions('[emoji]') },
   }))
 );

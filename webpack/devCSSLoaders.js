@@ -20,7 +20,6 @@ const matchRegex = /\.(css|scss)$/;
 module.exports = compose(
   loader({
     test: matchRegex,
-    exclude: [/\/node_modules\//],
     loaders: [
       { loader: 'style-loader' },
       { loader: postCSSModuleComponents.loader() },

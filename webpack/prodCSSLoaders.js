@@ -21,7 +21,6 @@ const matchRegex = /\.(css|scss)$/;
 module.exports = compose(
   loader({
     test: matchRegex,
-    exclude: [/\/node_modules\//],
     loaders: [
       'style-loader',
       postCSSModuleComponents.loader(),  // use commonjs output mode for PostCSS modules instead of CSS module format

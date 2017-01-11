@@ -24,7 +24,7 @@
     "postcss-automath": "^1.0.1",
     "postcss-discard-comments": "^2.0.4",
     "postcss-functions": "^2.1.0",
-    "postcss-import": "8.1.0",
+    "postcss-import": "9.1.0",
     "postcss-modules": "0.5.2",
     "postcss-modules-component-plugin": "0.0.3",
     "postcss-nested": "^1.0.0",

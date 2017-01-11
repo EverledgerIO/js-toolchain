@@ -66,7 +66,6 @@ function getPostCSSPlugins(webpack, format = null) {
     // Compile import dependency graph
     partialImport({
       extension: 'scss',
-      addDependencyTo: webpack,
       plugins: [moduleLoaderPlugin],  // handle modules first so we can determine filename to handle global mode
     }),
     // handle modules after combining into partials in order to get final classnames
